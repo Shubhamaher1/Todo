@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
-</head>
-<body>
-    <input type="text" placeholder="Name">
-    <input type="number" placeholder="Pay">
-    <input type="number" placeholder="Take">
-    <input type="time" class="current time">
-    <button> Add</button>
-    <div>
-        <div id="Name"></div>
-        <div id="Pay_take"></div>
-        <div id="total"></div>
-    </div>
-    
-    
-</body>
-</html>
+ <html>
+   <head>
+     <title>Parcel Sandbox</title>
+     <link rel="stylesheet" href="todo.css">
+
+     <meta charset="UTF-8" />
+     <script src="index.js"></script>
+
+   </head>
+ 
+   <body>
+     <div id="myDIV" class="header">
+       <h2>My To Do List</h2>
+       <input type="text" id="myInput" placeholder="Title..." />
+       <span onclick="todo()" class="addBtn">Add</span>
+     </div>
+ 
+     <ul id="myUL">
+       <li>Hit the gym</li>
+       <li class="checked">Pay bills</li>
+       <li>Meet George</li>
+       <li>Buy eggs</li>
+       <li>Read a book</li>
+       <li>Organize office</li>
+     </ul>
+ 
+     <script src="index.js"></script>
+   </body>
+   
+ </html>
