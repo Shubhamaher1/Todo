@@ -50,6 +50,10 @@ function deletebutton(){
         
 
   }
+  // lot of task remaning here the given part 
+  // check delete button have somme prolem 
+  // and delete all
+  
    
 
 
