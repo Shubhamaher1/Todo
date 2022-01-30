@@ -1,33 +1,26 @@
 <!DOCTYPE html>
- <html>
-   <head>
-     <title>Parcel Sandbox</title>
-     <link rel="stylesheet" href="todo.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>To Do List</title>
+  <script src="./index.js" defer></script>
+</head>
 
-     <meta charset="UTF-8" />
-     <script src="index.js"></script>
-
-   </head>
- 
-   <body>
-     <div id="myDIV" class="header">
-       <h2>My To Do List</h2>
-       <input type="text" id="myInput" placeholder="Title..." />
-       <span onclick="todo()" class="addBtn">Add</span>
-     </div>
- 
-     <ul id="myUL">
-       <li>Hit the gym</li>
-       <li class="checked">Pay bills</li>
-       <li>Meet George</li>
-       <li>Buy eggs</li>
-       <li>Read a book</li>
-       <li>Organize office</li>
-       <li class="add"></li>
-       
-     </ul>
- 
-     <script src="index.js"></script>
-   </body>
+<body id="main-body" class="">
+  <div class="day-mode" id="day-mode">
+    <input type="text" style="width: 60px; height: 15px; border-radius: 10px;"><button class="mode-day-button" id="mode"></button>
+  </div>
+  <div id="main-body">
    
- </html>
+    <input type="text" id="input" >
+    <button id="add">Add</button>
+    <ul id="list"></ul> 
+
+  </div>
+  
+</body>
+</html>
+

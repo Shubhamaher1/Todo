@@ -1,74 +1,92 @@
-function todo(){
-    const todo = document.getElementById("myInput");
-    const myUL= document.getElementById("myUL");
-    const newelement = document.createElement("li");
-    newelement.innerHTML=todo.value;
-    if(todo.value==""){
-        alert("Enter your inpute");
+const mode = document.getElementById("mode");
+const mainBody = document.getElementById("main-body");
+const addbtn = document.getElementById("add");
+const inputdata = document.getElementById("input");
+const list = document.getElementById("list");
+const dataStore = [];
+let id = 0;
+mode.addEventListener("click", () => {
+    if (mode.className == "mode-night-button") {
+        mode.className = "mode-day-button";
+        mainBody.className = "main-body-day";
+
+    } else {
+        mode.className = "mode-night-button";
+        mainBody.className = "main-body-night";
     }
-    else{
-        myUL.append(newelement);    //----->first postion
-        todo.value="";
+})
+addbtn.addEventListener("click", () => {
+    if (inputdata.value == "") {
+        alert("invlid Input");
+    } else {
+        dataAddInArray(inputdata.value);
+        inputdata.value = "";
     }
-   // myUL.appendChild(newelement); 
-   const delet= document.createElement("button");
-   delet.innerHTML="Remove Item";
-   myUL.prepend(delet);
-   delet.addEventListener("click",deletebutton);
-   
-  
+
+})
+function dataAddInArray(data) {
+    const obj = {
+        id: id,
+        title: data,
+        completed: false,
+
+    };
+
+    dataStore.push(obj);
+    id++;
+    updateDisplay();
+}
+function updateDisplay(arr) {
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+    const todoArr = arr || dataStore;
+    for (let todo of todoArr) {
+        const div = document.createElement("div");
+        div.setAttribute("id", "inline");
+        const itm = document.createElement("div");
+        itm.innerHTML = todo.title;
+        const delet = document.createElement("button");
+        delet.innerHTML = "X";
+
+
+        const li = document.createElement("input");
+        li.setAttribute("type", "checkbox");
+        li.setAttribute("id", "checkboxinput");
+        const comple = document.createElement("button");
+        comple.innerHTML = `<input type="checkbox"/>`;
+        // comple.setAttribute("type","li");
+        comple.addEventListener("click", () => {
+            completedFunction(todo);
+            comple.innerHTML = "";
+            comple.innerHTML = `<input type="checkbox" checked/>`
+        })
+        delet.addEventListener("click", () => {
+            deleteEle(todo);
+            id--;
+
+        })
+        if(todo.completed){
+            itm.style.textDecoration="line-through";
+           comple.innerHTML=`<input type="checkbox" checked/>`
+            
+        }
+        div.append(comple);
+        div.append(delet);
+        div.append(itm);
+        list.append(div);
+    }
 }
 
-function deletebutton(){
-    
-    const line = document.getElementsByTagName("li");
-   for(let i=0;i<line.length;i++){
-       const item=line[i];
-       const check = item.getElementsByTagName("button");
-       if(check==true){
-           
-        check.addEventListener("click", function removebutton(){
-            
-            item.remove();
-            alert("Item Deleted");
-        });
-
-       }
-       else{
-           const delet = document.createElement("button");
-           const already= document.getElementsByTagName("button");
-           //already.remove();
-        delet.innerHTML="X";
-        delet.style.color="red";
-        item.prepend(delet);
-        delet.addEventListener("click", function removebutton(){
-            
-            item.remove();
-            alert("Item Deleted");
-        });
-       }
-        
-
-  }
-  // lot of task remaning here the given part 
-  // check delete button have somme prolem 
-  // and delete all
-  
-   
-
-
- }
-function deleteAll(){
-    const line = document.getElementsByTagName("ul");
-    const deletebutton= document.createElement("button");
-    deletebutton.innerHTML="Remove All";
-    const buttonplace= document.getElementById("myDIV");
-    deletebutton.style.marginLeft="50%";
-    deletebutton.style.marginRight="50%";
-    deletebutton.style.marginTop="10px";
-    buttonplace.append(deletebutton);
-    deletebutton.addEventListener("onclick",()=>{
-        line.remove();
-    });
+function deleteEle(index) {
+    dataStore.splice(index.id, 1);
+    updateDisplay();
 }
-deleteAll();
+
+const completedFunction = function (itm) {
+    itm.completed = true;
+    updateDisplay();
+}
+
+
+
+
